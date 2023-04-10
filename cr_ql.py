@@ -1,5 +1,8 @@
 from envirment import envirment
 from QL import QLearningTable
+def q_learning():
+    
+    return None
 
 if __name__ == "__main__":
     env = envirment()
