@@ -3,8 +3,8 @@ class CrossRiver:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.initial_state = (x, y, 'left') # 'left' represents the boat on the initial side
-        self.final_state = (0, 0, 'right') # 'right' represents the boat on the final side
+        self.initial_state = (x, y, 'left') 
+        self.final_state = (0, 0, 'right') 
     
     def is_valid(self, state):
         if state[0] < 0 or state[1] < 0 or state[0] > self.x or state[1] > self.y:
@@ -81,12 +81,13 @@ class CrossRiver:
                 print(result[i])
                 plt.text(vector[i+1][0]+0.02*i, vector[i+1][1]+0.04*i, str(i+1), fontsize=12, color='red', horizontalalignment='center', verticalalignment='center')
                 plt.arrow(vector[i][0], vector[i][1], vector[i+1][0]-vector[i][0], vector[i+1][1]-vector[i][1], length_includes_head=True, head_width=0.1)
-                plt.xlim(-1, 4)
-                plt.ylim(-1, 4)
+                plt.xlim(-1, self.x+1)
+                plt.ylim(-1, self.y+1)
                 plt.title('Boat:'+result[i][2])
                 plt.xlabel('Good guys')
                 plt.ylabel('Bad guys')
                 plt.pause(1)  
+            print(result[-1])
             plt.show()
         else:
             print("No solution found")
@@ -122,7 +123,7 @@ class CrossRiver:
                 plt.pause(1)
             plt.show()
 
-cross_river = CrossRiver(3, 3)
-result = cross_river.dfs()#dfs/bfs
+cross_river = CrossRiver(8, 5)
+result = cross_river.bfs()#dfs/bfs
 cross_river.plot_result(result)
 cross_river.draw_movement(result)
