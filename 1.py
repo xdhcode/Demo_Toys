@@ -1,2 +1,3 @@
 class dqn():
-    def 
+    def __init__(self):
+        
