@@ -1,8 +1,9 @@
 import matplotlib.pyplot as plt
 class CrossRiver:
-    def __init__(self, x, y):
+    def __init__(self, x, y, b):
         self.x = x
         self.y = y
+        self.b = b
         self.initial_state = (x, y, 'left') 
         self.final_state = (0, 0, 'right') 
     
@@ -20,14 +21,14 @@ class CrossRiver:
         if state[2] == 'left':
             for i in range(3):
                 for j in range(3):
-                    if i + j > 0 and i + j <= 2:
+                    if i + j > 0 and i + j <= self.b:
                         next_state = (state[0]-i, state[1]-j, 'right')
                         if self.is_valid(next_state):
                             next_states.append(next_state)
         else:
             for i in range(3):
                 for j in range(3):
-                    if i + j > 0 and i + j <= 2:
+                    if i + j > 0 and i + j <= self.b:
                         next_state = (state[0]+i, state[1]+j, 'left')
                         if self.is_valid(next_state):
                             next_states.append(next_state)
@@ -123,7 +124,7 @@ class CrossRiver:
                 plt.pause(1)
             plt.show()
 
-cross_river = CrossRiver(8, 5)
+cross_river = CrossRiver(3, 3, 2)
 result = cross_river.bfs()#dfs/bfs
 cross_river.plot_result(result)
 cross_river.draw_movement(result)
